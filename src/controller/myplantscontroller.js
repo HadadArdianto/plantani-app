@@ -1,8 +1,8 @@
-const MyPlantsModel = require('../models/myplants');
+const MyPlantsModel = require('../models/myplantsmodel');
 
 const getAllMyPlants = async (req, res) => {
     try {
-        const [data] = await PlantDiseasesModel.getAllMyPlants();
+        const [data] = await MyPlantsModel.getAllMyPlants();
         res.json({
             message: 'GET all MyPlants success',
             data: data

@@ -1,4 +1,4 @@
-const PlantDiseasesModel = require('../models/plantdiseases');
+const PlantDiseasesModel = require('../models/plantdiseasesmodel');
 
 const getAllPlantDiseases = async (req, res) => {
     try {
@@ -16,12 +16,12 @@ const getAllPlantDiseases = async (req, res) => {
 }
 
 const getPlantDiseasesById = async (req, res, ) => {
+    const { plantDiseaseId } = req.params;
     try {
-        const [data] = await PlantDiseasesModel.getPlantDiseasesById();
-        res.json({
-            message: 'GET Data plantdiseasesbyid success',
-            data: data
-        })
+        const plantDisease = await PlantDiseasesModel.getPlantDiseasesById(plantDiseaseId);
+        if (plantDisease) {
+        res.json(plantDisease);
+    }
     } catch (error) {
         res.status(500).json({
             message: 'Server error',

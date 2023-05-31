@@ -2,10 +2,9 @@ require('dotenv').config()
 const PORT = process.env.PORT || 5000;
 const express = require('express');
 
-// export dulu file users dari folder (Routes)
-const usersRoutes = require('./routes/users');
-const plantDiseasesRoutes = require('./routes/plantdiseases');
-const myPlantsRoutes = require('./routes/myplants');
+const usersRoutes = require('./routes/usersroute');
+const plantDiseasesRoutes = require('./routes/plantdiseasesroute');
+const myPlantsRoutes = require('./routes/myplantsroute');
 
 const middlewareLogRequest = require('./middleware/logs');
 const upload = require('./middleware/multer');
@@ -18,6 +17,10 @@ app.use('/assets', express.static('public/images'))
 
 // buat gruping sesuai path
 app.use('/users', usersRoutes);
+app.use('/myplants', myPlantsRoutes);
+app.use('/plantdiseases', plantDiseasesRoutes);
+
+
 app.post('/upload',upload.single('photo'),(req, res) => {
     res.json({
         message: 'Upload berhasil'
